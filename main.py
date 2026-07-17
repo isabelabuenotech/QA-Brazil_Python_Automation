@@ -33,8 +33,9 @@ class TestUrbanRoutes:
         def test_order_2_ice_creams(self):
             # Adicionar em S8
             print("função criada para pedir 2 sorvetes")
-            for iterar in range(2):
-                #Adicionar em S8
+            number_of_ice_creams = 2
+            for count in range(number_of_ice_creams):
+            #Adicionar em S8
             pass
 
         def test_car_search_model_appears(self):
@@ -45,7 +46,7 @@ class TestUrbanRoutes:
 import helpers
 class TestUrbanRoutes:
         @classmethod
-        def setUpClass(cls):
+        def setup_class(cls):
             if helpers.is_url_reachable(data.URBAN_ROUTES_URL):
                 print("Conectado ao servidor Urban Routes")
             else:
