@@ -3,7 +3,6 @@ from pages import UrbanRoutesPage
 import data
 import helpers
 
-
 class TestUrbanRoutes:
     @classmethod
     def setup_class(cls):

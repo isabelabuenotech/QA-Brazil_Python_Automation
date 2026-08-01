@@ -16,14 +16,14 @@ class UrbanRoutesPage:
     CALL_TAXI_BUTTON_LOCATOR = (By.XPATH, '//button[text()="Chamar um taxi"]')
     COMFORT_BUTTON_LOCATOR = (By.XPATH, '//button[text()="Comfort"]')
 
-# Campo Telefone
+    # Campo Telefone
     PHONE_FIELD_LOCATOR = (By.XPATH, '//div[text()="Número de telefone"]')
     PHONE_INPUT_LOCATOR = (By.ID, 'phone')
     NEXT_BUTTON_LOCATOR = (By.XPATH, '//button[text()="Próximo"]')
     SMS_CODE_INPUT_LOCATOR = (By.XPATH, '//button[text()="Inserir o código"]')
     CONFIRM_SMS_BUTTON_LOCATOR = (By.XPATH, '//button[text()="Confirmar"]')
 
-# Campo Cartão
+    # Campo Cartão
     PAYMENT_METHOD_BUTTON = (By.XPATH, '//div[text()="Método de Pagamento"]')
     ADD_CARD_BUTTON = (By.XPATH, '//button[text()="Adicionar cartão"]')
     CARD_NUMBER_INPUT = (By.ID, 'number')
@@ -31,14 +31,14 @@ class UrbanRoutesPage:
     ADD_PAYMENT_METHOD_BUTTON = (By.XPATH, '//button[text()="Adicionar"]')
     CLOSE_POPUP_BUTTON = (By.CSS_SELECTOR, 'button.close-button.section-close')
 
-# Comentário para o motorista
+    # Comentário para o motorista
     MESSAGE_FIELD = (By.XPATH, '//button[text()= "Enviar mensagem ao motorista..."]')
 
-# Pedir um cobertor e lençóis
+    # Pedir um cobertor e lençóis
     BLANKET_TOGGLE_LOCATOR = (By.CSS_SELECTOR, '.r-sw .slider.round')
     BLANKET_TOGGLE_CHECKBOX = (By.CSS_SELECTOR, '.r-sw .switch-input')
 
-# Pedir 2 sorvetes
+    # Pedir 2 sorvetes
     ICE_CREAM_BUTTON_LOCATOR = (By.XPATH, '//div[text()="Sorvete"]/..//div[@class="counter"]')
     ICE_CREAM_PLUS_BUTTON = (By.XPATH, '//div[text()="Sorvete"]/..//div[@class="counter-plus"]')
     ICE_CREAM_VALUE = (By.XPATH, '//div[text()="Sorvete"]/..//div[@class="counter-value"]')

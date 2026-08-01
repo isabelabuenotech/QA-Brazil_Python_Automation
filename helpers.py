@@ -3,6 +3,7 @@ def retrieve_phone_code(driver) -> str:
     Use-o quando o aplicativo espera o código de confirmação para passá-lo para seus testes.
     O código de confirmação do telefone só pode ser obtido após ser solicitado no aplicativo."""
 
+
     import json
     import time
     from selenium.common import WebDriverException
