@@ -1,4 +1,4 @@
-from selenium.webdriver.chrome import webdriver
+from selenium import webdriver
 from pages import UrbanRoutesPage
 import data
 import helpers
@@ -90,7 +90,7 @@ class TestUrbanRoutes:
         self.routes_page.click_call_taxi_button()
 
         search_model = self.driver.find_element(*self.routes_page.SMART_BUTTON_ORDER) if hasattr(self.routes_page, 'SMART_BUTTON_ORDER') else self.driver.find_element_by_class_name('order-body')
-        assert search_modal.is_displayed() is True
+        assert search_model.is_displayed() is True
         pass
 
     @classmethod
