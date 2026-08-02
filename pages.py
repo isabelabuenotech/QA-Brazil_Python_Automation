@@ -72,7 +72,7 @@ class UrbanRoutesPage:
         self.driver.find_element(*self.PHONE_INPUT_LOCATOR).click()
 
     def fill_phone_input(self, phone_number):
-        self.driver.find_element(*self.PHONE_INPUT_LOCATOR).send_keys(PHONE_NUMBER)
+        self.driver.find_element(*self.PHONE_INPUT_LOCATOR).send_keys(phone_number)
 
     def click_next_button(self):
         self.driver.find_element(*self.NEXT_BUTTON_LOCATOR).click()
@@ -94,18 +94,18 @@ class UrbanRoutesPage:
         self.driver.find_element(*self.ADD_CARD_BUTTON).click()
 
     def fill_card_number(self, card_number):
-        self.driver.find_element(*self.CARD_NUMBER_INPUT).send_keys(CARD_NUMBER)
+        self.driver.find_element(*self.CARD_NUMBER_INPUT).send_keys(card_number)
 
     def fill_card_code_and_blur(self, card_code_input):
         code_field = self.driver.find_element(*self.CARD_CODE_INPUT)
-        code_field.send_keys(CARD_CODE)
+        code_field.send_keys(card_code_input)
         code_field.send_keys(Keys.TAB)
 
     def click_message_field (self):
         self.driver.find_element(*self.MESSAGE_FIELD).click()
 
     def fill_message_field(self, message_for_driver):
-        self.driver.find_element(*self.MESSAGE_FIELD).send_keys(MESSAGE_FOR_DRIVER)
+        self.driver.find_element(*self.MESSAGE_FIELD).send_keys(message_for_driver)
 
     def click_blanket_toggle(self):
         toggle = self.driver.find_element(*self.BLANKET_TOGGLE_LOCATOR)

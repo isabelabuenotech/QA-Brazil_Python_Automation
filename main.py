@@ -21,61 +21,77 @@ class TestUrbanRoutes:
         cls.driver.get(data.URBAN_ROUTES_URL)
         cls.routes_page = UrbanRoutesPage(cls.driver)
 
-        def test_set_route(self):
-            self.routes_page.enter_from_location(data.ADDRESS_FROM)
-            self.routes_page.enter_to_location(data.ADDRESS_TO)
+    def test_set_route(self):
+        self.routes_page.enter_from_location(data.ADDRESS_FROM)
+        self.routes_page.enter_to_location(data.ADDRESS_TO)
 
-            from_value = self.driver.find_element(*self.routes_page.FROM_LOCATOR).get_attribute('value')
-            to_value = self.driver.find_element(*self.routes_page.TO_LOCATOR).get_attribute('value')
-            assert from_value == data.ADDRESS_FROM
-            assert to_value == data.ADDRESS_TO
-            pass
+        from_value = self.driver.find_element(*self.routes_page.FROM_LOCATOR).get_attribute('value')
+        to_value = self.driver.find_element(*self.routes_page.TO_LOCATOR).get_attribute('value')
+        assert from_value == data.ADDRESS_FROM
+        assert to_value == data.ADDRESS_TO
+        pass
 
-        def test_select_plan(self):
-            self.routes_page.click_call_taxi_button()
-            self.routes_page.click_comfort_button()
-            pass
+    def test_select_plan(self):
+        self.routes_page.click_call_taxi_button()
+        self.routes_page.click_comfort_button()
 
-        def test_fill_phone_number(self):
-            self.routes_page.click_phone_field()
-            self.routes_page.fill_phone_input(data.PHONE_NUMBER)
-            self.routes_page.click_next_button()
+        comfort_option = self.driver.find_element(*self.routes_page.COMFORT_BUTTON_LOCATOR).get_attribute('class')
+        assert "active" in comfort_option
+        pass
 
-            code = helpers.retrieve_phone_code(self.driver)
+    def test_fill_phone_number(self):
+        self.routes_page.click_phone_field()
+        self.routes_page.fill_phone_input(data.PHONE_NUMBER)
+        self.routes_page.click_next_button()
 
-            self.routes_page.fill_sms_code_input(code)
-            self.routes_page.click_confirm_sms_button()
-            pass
+        code = helpers.retrieve_phone_code(self.driver)
 
-        def test_fill_card(self):
-            self.routes_page.click_payment_method_button()
-            self.routes_page.click_add_card_button()
-            self.routes_page.fill_card_number(data.CARD_NUMBER)
-            self.routes_page.fill_card_code_and_blur(data.CARD_CODE)
+        self.routes_page.fill_sms_code_input(code)
+        self.routes_page.click_confirm_sms_button()
 
-            self.routes_page.driver.find_element(*self.routes_page.ADD_PAYMENT_METHOD_BUTTON).click()
-            self.routes_page.driver.find_element(*self.routes_page.CLOSE_POPUP_BUTTON).click()
-            pass
+        phone_input = self.driver.find_element(*self.routes_page.PHONE_FIELD_LOCATOR).text
+        assert data.PHONE_NUMBER in phone_input
+        pass
 
-        def test_comment_for_driver(self):
-            self.routes_page.fill_message_field(data.MESSAGE_FOR_DRIVER)
-            pass
+    def test_fill_card(self):
+        self.routes_page.click_payment_method_button()
+        self.routes_page.click_add_card_button()
+        self.routes_page.fill_card_number(data.CARD_NUMBER)
+        self.routes_page.fill_card_code_and_blur(data.CARD_CODE)
 
-        def test_order_blanket_and_handkerchiefs(self):
-            self.routes_page.click_blanket_toggle()
+        self.routes_page.driver.find_element(*self.routes_page.ADD_PAYMENT_METHOD_BUTTON).click()
+        self.routes_page.driver.find_element(*self.routes_page.CLOSE_POPUP_BUTTON).click()
 
-            is_selected = self.driver.find_element(*self.routes_page.BLANKET_TOGGLE_CHECKBOX).is_selected()
-            assert is_selected is True
-            pass
+        payment_method_input = self.driver.find_element(*self.routes_page.PAYMENT_METHOD_BUTTON).text
+        assert "Cartão" in payment_method_input
+        pass
 
-        def test_order_2_ice_creams(self):
-            self.routes_page.add_ice_cream(2)
-            assert self.routes_page.get_ice_cream_count() == 2
-            pass
+    def test_comment_for_driver(self):
+        self.routes_page.fill_message_field(data.MESSAGE_FOR_DRIVER)
 
-        def test_car_search_model_appears(self):
-            self.routes_page.click_call_taxi_button()
-            pass
+        message_text = self.driver.find_element(*self.routes_page.MESSAGE_FIELD).get_attribute('value')
+        assert message_text == data.MESSAGE_FOR_DRIVER
+        pass
+
+    def test_order_blanket_and_handkerchiefs(self):
+        self.routes_page.click_blanket_toggle()
+
+        is_selected = self.driver.find_element(*self.routes_page.BLANKET_TOGGLE_CHECKBOX).is_selected()
+        assert is_selected is True
+        pass
+
+    def test_order_2_ice_creams(self):
+        self.routes_page.add_ice_cream(2)
+
+        assert self.routes_page.get_ice_cream_count() == 2
+        pass
+
+    def test_car_search_model_appears(self):
+        self.routes_page.click_call_taxi_button()
+
+        search_model = self.driver.find_element(*self.routes_page.SMART_BUTTON_ORDER) if hasattr(self.routes_page, 'SMART_BUTTON_ORDER') else self.driver.find_element_by_class_name('order-body')
+        assert search_modal.is_displayed() is True
+        pass
 
     @classmethod
     def teardown_class(cls):
